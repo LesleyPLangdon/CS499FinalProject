@@ -1,21 +1,16 @@
 /*
- * Vector.hpp
- *
- *  Created on: Apr 15, 2020
- *      Author: Lesle
+ * Name			:	Vector.hpp
+ * Author		:	Lesley Potts-Langdon (constructors, method stubs and some base code were supplied,
+ * 						all method code and logic produced by author)
+ * Start Date	:	April 14, 2020
+ * Submitted	:	May 30, 2020 (phase one, all files accessable from CapstoneMain.cpp main() method)
+ * Description	:	Class to create a Binary Search Tree with
+ * 		methods for loading, displaying, searching and removing.
  */
 
 #ifndef VECTOR_HPP_
 #define VECTOR_HPP_
 
-
-//============================================================================
-// Name        : VectorSorting.cpp
-// Author      : Your name
-// Version     : 1.0
-// Copyright   : Copyright © 2017 SNHU COCE
-// Description : Vector Sorting Algorithms
-//============================================================================
 
 #include <algorithm>
 #include <iostream>
@@ -43,7 +38,7 @@ using namespace std;
  *
  * @param csvPath the path to the CSV file to load
  * @return a container holding all the bids read
-		 */
+*/
 vector<Bid> vLoadBids() {
 	string csvPath;
 		cout << "What file would you like to load: (use eBid_Monthly_Sales_Dec_2016.csv for test purposes) " << endl;
@@ -67,8 +62,6 @@ vector<Bid> vLoadBids() {
             bid.fund = file[i][8];
             bid.amount = strToDouble(file[i][4], '$');
 
-            //cout << "Item: " << bid.title << ", Fund: " << bid.fund << ", Amount: " << bid.amount << endl;
-
             // push this bid to the end
             bids.push_back(bid);
         }
@@ -78,7 +71,7 @@ vector<Bid> vLoadBids() {
     return bids;
 }
 
-// FIXME (2a): Implement the quick sort logic over bid.title
+// Implement the quick sort logic over bid.title
 
 /*
  * Partition the vector of bids into two parts, low and high
@@ -94,7 +87,7 @@ int partition(vector<Bid>& bids, int begin, int end) {
 	int pivot = begin + (end - begin) /2;
 	//boolean variable to stop loop
 	bool done = false;
-	//bids temp;
+
 
 	while (!done){
 
@@ -114,9 +107,6 @@ int partition(vector<Bid>& bids, int begin, int end) {
 			//swap values, coded as in text and as in video
 
 			swap(bids.at(begin), bids.at(end));
-			//temp = bids.at(begin);// stores first unsorted value in temp
-			//bids.at(begin) = bids.at(end);// assigns minimum value to first unsorted value
-			//bids.at(end) = temp;// assigns value in temp to former location of minimum bid
 
 			begin++;
 			end--;
@@ -160,7 +150,7 @@ void quickSort(vector<Bid>& bids, int begin, int end) {
 
 }
 
-// FIXME (1a): Implement the selection sort logic over bid.title
+// Implement the selection sort logic over bid.title
 
 /*
  * Perform a selection sort on bid title
@@ -184,12 +174,9 @@ void selectionSort(vector<Bid>& bids) {
 			}
 		}
 		// if min is different than the first unsorted value they are swapped
-		// coded following process in text and process in video
 		if(min != i){
 			swap(bids.at(i), bids.at(min));
-			//temp = bids.at(i);// stores first unsorted value in temp
-			//bids.at(i) = bids.at(min);// assigns minimum value to first unsorted value
-			//bids.at(min) = temp;// assigns value in temp to former location of minimum bid
+
 
 		}
 
@@ -200,19 +187,11 @@ void selectionSort(vector<Bid>& bids) {
 
 
 /*
- * The one and only main() method
+ * Vector main method.  Actual main() method directs here when user selects to
+ * 			search by title.
 */
 int vMain() {
 
-    // process command line arguments
-    /*string csvPath;
-    switch (argc) {
-    case 2:
-        csvPath = argv[1];
-        break;
-    default:
-        csvPath = "eBid_Monthly_Sales.csv";
-    }*/
 
     // Define a vector to hold all the bids
     vector<Bid> bids;
@@ -258,7 +237,7 @@ int vMain() {
 
             break;
 
-        // FIXME (1b): Invoke the selection sort and report timing results
+        // Invoke the selection sort and report timing results
 
         case 3:
            // Initialize a timer variable before sorting bids
@@ -276,7 +255,7 @@ int vMain() {
            cout << "time: " << ticks * 1.0 / CLOCKS_PER_SEC << " seconds" << endl;
 
             break;
-        // FIXME (2b): Invoke the quick sort and report timing results
+        // Invoke the quick sort and report timing results
         case 4:
         	// Initialize a timer variable before sorting bids
         	ticks = clock();

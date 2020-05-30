@@ -1,22 +1,15 @@
 /*
- * LinkedList.hpp
- *
- *  Created on: Apr 14, 2020
- *      Author: Lesle
+ * Name			:	LinkedList.hpp
+ * Author		:	Lesley Potts-Langdon (constructors, method stubs and some base code were supplied,
+ * 						all method code and logic produced by author)
+ * Start Date	:	April 14, 2020
+ * Submitted	:	May 30, 2020 (phase one, all files accessable from CapstoneMain.cpp main() method)
+ * Description	:	Class to create a Linked List with
+ * 		methods for loading, adding, displaying, searching and removing.
  */
 
 #ifndef LINKEDLIST_HPP_
 #define LINKEDLIST_HPP_
-
-
-//============================================================================
-// Name        : LinkedList.cpp
-// Author      : Lesley Potts-Langdon
-// Version     : 1.0
-// Copyright   : Copyright © 2017 SNHU COCE
-// Description : Lab 3-3 Lists and Searching
-// Date		   : January 28, 2018
-//============================================================================
 
 #include <algorithm>
 #include <iostream>
@@ -25,10 +18,6 @@
 #include "CSVparser.hpp"
 #include "Capstone.hpp"
 using namespace std;
-
-//============================================================================
-// Global definitions visible to all methods and classes
-//============================================================================
 
 
 
@@ -43,7 +32,7 @@ using namespace std;
 class LinkedList {
 
 private:
-    // FIXME (1): Internal structure for list entries, housekeeping variables
+    // Internal structure for list entries, housekeeping variables
 
 	struct Node{
 		Bid bid; //declare instance of Bid struct
@@ -94,7 +83,7 @@ LinkedList::~LinkedList() {
  * Append a new bid to the end of the list
 */
 void LinkedList::Append(Bid bid) {
-    // FIXME (3): Implement append logic
+    // Implement append logic
 	Node* node = new Node(bid);//new node pass bid
 
 	if (head == nullptr) {
@@ -115,7 +104,7 @@ void LinkedList::Append(Bid bid) {
  * Prepend a new bid to the start of the list
 */
 void LinkedList::Prepend(Bid bid) {
-    // FIXME (4): Implement prepend logic
+    // Implement prepend logic
 	Node* node = new Node(bid);//new node pass bid
 
 	if (head != nullptr){
@@ -130,7 +119,7 @@ void LinkedList::Prepend(Bid bid) {
  * Simple output of all bids in the list
 */
 void LinkedList::PrintList() {
-    // FIXME (5): Implement print logic
+    // Implement print logic
 	Node* current = head;//set current to the head node
 
 	 //loop through linked list and print info from each node
@@ -147,20 +136,20 @@ void LinkedList::PrintList() {
  * @param bidId The bid id to remove from the list
 */
 void LinkedList::Remove() {
-    // FIXME (6): Implement remove logic
+    // Implement remove logic
 	string bidId;
 		cout << "Which bid would you like to remove? (use 98109 for test purposes)" << endl;
 		cin >> bidId;
 	if (head != nullptr){
 		//special case if head is the node to be removed
-		if(head->bid.bidId.compare(bidId) == 0){//compares id values, if they match it returns 0
-			Node* tempNode = head->next;//assign node after one to be removed to a temp node
+		if(head->bid.bidId.compare(bidId) == 0){   //compares id values, if they match it returns 0
+			Node* tempNode = head->next;   //assign node after one to be removed to a temp node
 			delete head;
-			head = tempNode;//assign node following one removed to head
-			size--;//decrement size
+			head = tempNode;   //assign node following one removed to head
+			size--;   //decrement size
 		}
 		else{
-			Node* current = head;//node pointer current points to head
+			Node* current = head;   //node pointer current points to head
 			//loop through linked list and search for match
 			while (current->next != nullptr){
 				//compare method will return 0 if values are equal
@@ -188,7 +177,7 @@ void LinkedList::Remove() {
  * @param bidId The bid id to search for
 */
 Bid LinkedList::Search() {
-    // FIXME (7): Implement search logic
+    // Implement search logic
 	string bidId;
 		cout << "Enter Bid ID for search: (use 98109 for test purposes) " << endl;
 		cin >> bidId;
@@ -257,10 +246,10 @@ void llLoadBids(LinkedList *list) {
 
 
 /*
- * The one and only main() method
+ * Linked List main method.  Actual main() method directs here when the user
+ *       selects to search by fund.
  *
- * @param arg[1] path to CSV file to load from (optional)
- * @param arg[2] the bid Id to use when searching the list (optional)
+ *
 */
 int llMain() {
 

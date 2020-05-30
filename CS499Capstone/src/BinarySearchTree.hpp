@@ -1,8 +1,11 @@
 /*
- * BinarySearchTree.hpp
- *
- *  Created on: Apr 14, 2020
- *      Author: Lesle
+ * Name			:	BinarySearchTree.hpp
+ * Author		:	Lesley Potts-Langdon (constructors, method stubs and some base code were supplied,
+ * 						all method code and logic produced by author)
+ * Start Date	:	April 14, 2020
+ * Submitted	:	May 30, 2020 (phase one, all files accessable from CapstoneMain.cpp main() method)
+ * Description	:	Class to create a Binary Search Tree with
+ * 		methods for loading, displaying, searching and removing.
  */
 
 #ifndef BINARYSEARCHTREE_HPP_
@@ -12,18 +15,10 @@
 #include <time.h>
 #include "Capstone.hpp"
 #include "CSVparser.hpp"
-//#include "CS499Capstone.hpp"
 using namespace std;
 
-//============================================================================
-// Global definitions visible to all methods and classes
-//============================================================================
 
-// forward declarations
-
-
-
-// FIXME (1): Internal structure for tree node
+// Internal structure for tree node
 struct BstNode {
     Bid bid;
     BstNode *left;
@@ -71,13 +66,7 @@ public:
     void Remove();
     Bid Search();
 
-
-
-
 };
-
-
-
 
 
 /**
@@ -120,7 +109,7 @@ void BinarySearchTree::PreOrder() {
  * Insert a bid
  */
 void BinarySearchTree::Insert(Bid bid) {
-    // FIXME (2a) Implement inserting a bid into the tree
+    // Implement inserting a bid into the tree
     if (root == nullptr) {
         root = new BstNode(bid);
     } else {
@@ -132,7 +121,7 @@ void BinarySearchTree::Insert(Bid bid) {
  * Remove a bid
  */
 void BinarySearchTree::Remove() {
-    // FIXME (4a) Implement removing a bid from the tree
+    // Implement removing a bid from the tree
 	string bidId;
 	cout << "Which bid would you like to remove? (use 98109 for test purposes)" << endl;
 	cin >> bidId;
@@ -143,7 +132,7 @@ void BinarySearchTree::Remove() {
  * Search for a bid
  */
 Bid BinarySearchTree::Search() {
-    // FIXME (3) Implement searching the tree for a bid
+    // Implement searching the tree for a bid
 	string bidId;
 	cout << "Enter Bid ID for search:" << endl;
 	cin >> bidId;
@@ -175,7 +164,7 @@ Bid BinarySearchTree::Search() {
  * @param bid Bid to be added
  */
 void BinarySearchTree::addNode(BstNode* node, Bid bid) {
-    // FIXME (2b) Implement inserting a bid into the tree
+    // Implement inserting a bid into the tree
 
     // if node is larger then add to left
     if (node->bid.bidId.compare(bid.bidId) > 0) {
@@ -230,7 +219,7 @@ void BinarySearchTree::preOrder(BstNode* node) {
  * Remove a bid from some node (recursive)
  */
 BstNode* BinarySearchTree::removeNode(BstNode* node, string bidId) {
-    // FIXME (4b) Implement removing a bid from the tree
+    // Implement removing a bid from the tree
     if (node == nullptr) {
         return node;
         // recurse down the left subtree
@@ -307,8 +296,6 @@ void bstLoadBids(BinarySearchTree* bst) {
             bid.fund = file[i][8];
             bid.amount = strToDouble(file[i][4], '$');
 
-            //cout << "Item: " << bid.title << ", Fund: " << bid.fund << ", Amount: " << bid.amount << endl;
-
             // push this bid to the end
             bst->Insert(bid);
         }
@@ -318,7 +305,8 @@ void bstLoadBids(BinarySearchTree* bst) {
 }
 
 /**
- * The one and only main() method
+ * BST main() method. Actual main() method will route to here when user selects
+ * 		to search by the bit amount.
  */
 int bstMain() {
 
@@ -353,7 +341,6 @@ int bstMain() {
            // Complete the method call to load the bids
            bstLoadBids(bst);
 
-           //cout << bst->Size() << " bids read" << endl;
 
            // Calculate elapsed time and display result
            ticks = clock() - ticks; // current clock ticks minus starting clock ticks

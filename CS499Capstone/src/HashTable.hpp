@@ -1,8 +1,11 @@
 /*
- * HashTable.hpp
- *
- *  Created on: Apr 14, 2020
- *      Author: Lesle
+ * Name			:	HashTable.hpp
+ * Author		:	Lesley Potts-Langdon (constructors, method stubs and some base code were supplied,
+ * 						all method code and logic produced by author)
+ * Start Date	:	April 14, 2020
+ * Submitted	:	May 30, 2020 (phase one, all files accessable from CapstoneMain.cpp main() method)
+ * Description	:	Class to create a Hash Table with
+ * 		methods for loading, displaying, searching and removing.
  */
 
 #ifndef HASHTABLE_HPP_
@@ -13,7 +16,6 @@
 #include <iostream>
 #include <string> // atoi
 #include <time.h>
-//#include "CS499Capstone.hpp"
 #include "CSVparser.hpp"
 #include "Capstone.hpp"
 
@@ -25,18 +27,7 @@ using namespace std;
 
 const unsigned int DEFAULT_SIZE = 179;
 
-// forward declarations
-//double htStrToDouble(string str, char ch);
 
-/*struct Bid {
-    string bidId; // unique identifier
-    string title;
-    string fund;
-    double amount;
-    Bid() {
-        amount = 0.0;
-    }
-};*/
 
 //============================================================================
 // Hash Table class definition
@@ -49,7 +40,7 @@ const unsigned int DEFAULT_SIZE = 179;
 class HashTable {
 
 private:
-    // FIXME (1): Define structures to hold bids
+    // Define structures to hold bids
 	struct Node {
 		Bid bid;
 		unsigned key;
@@ -57,7 +48,6 @@ private:
 
 		// default constructor
 		Node() {
-			//key = 0;
 			key = UINT_MAX;
 			next = nullptr;
 		}
@@ -88,23 +78,12 @@ public:
 
 
 
-/**
- * Simple C function to convert a string to a double
- * after stripping out unwanted char
- *
- * credit: http://stackoverflow.com/a/24875936
- *
- * @param ch The character to strip out
-*/
-/*double htStrToDouble(string str, char ch) {
-    str.erase(remove(str.begin(), str.end(), ch), str.end());
-    return atof(str.c_str());
-}*/
+
 /**
  * Default constructor
  */
 HashTable::HashTable() {
-    // FIXME (2): Initialize the structures used to hold bids
+    // Initialize the structures used to hold bids
 	nodes.resize(DEFAULT_SIZE);
 }
 
@@ -112,7 +91,7 @@ HashTable::HashTable() {
  * Destructor
  */
 HashTable::~HashTable() {
-    // FIXME (3): Implement logic to free storage when class is destroyed
+    // Implement logic to free storage when class is destroyed
 	nodes.erase(nodes.begin());
 }
 
@@ -126,7 +105,7 @@ HashTable::~HashTable() {
  * @return The calculated hash
  */
 unsigned int HashTable::hash(int key) {
-    // FIXME (4): Implement logic to calculate a hash value
+    // Implement logic to calculate a hash value
 	return key  % DEFAULT_SIZE;
 }
 
@@ -136,7 +115,7 @@ unsigned int HashTable::hash(int key) {
  * @param bid The bid to insert
  */
 void HashTable::Insert(Bid bid) {
-    // FIXME (5): Implement logic to insert a bid
+    // Implement logic to insert a bid
 	//atoi converts ASCII string to integer
 	//c_str converts full string to string or chars
 	unsigned key = hash(atoi(bid.bidId.c_str()));
@@ -169,9 +148,7 @@ void HashTable::Insert(Bid bid) {
  * Print all bids
  */
 void HashTable::PrintAll() {
-    // FIXME (6): Implement logic to print all bids
-
-		//cout << "Test print";
+    // Implement logic to print all bids
 
 		// declares node pointer printNode
 		Node* printNode;
@@ -202,9 +179,8 @@ void HashTable::PrintAll() {
  * @param bidId The bid id to search for
  */
 void HashTable::Remove() {
-    // FIXME (7): Implement logic to remove a bid
-	//unsigned key = hash(atoi(bidId.c_str()));
-	//nodes.erase(nodes.begin() + key);
+    // Implement logic to remove a bid
+
 	string bidId;
 	cout << "Which bid would you like to remove? (use 98109 for test purposes)" << endl;
 	cin >> bidId;
@@ -249,7 +225,7 @@ Bid HashTable::Search() {
 	cin >> bidId;
     Bid bid;
 
-    // FIXME (8): Implement logic to search for and return a bid
+    // Implement logic to search for and return a bid
     unsigned key = hash(atoi(bidId.c_str()));
 
     Node* node = &(nodes.at(key));
@@ -287,7 +263,7 @@ Bid HashTable::Search() {
  */
 void htLoadBids(HashTable* hashTable) {
 	string csvPath;
-	cout << "What file would you like to load: (use eBid_Monthly_Sales.csv for test purposes) " << endl;
+	cout << "What file would you like to load: (use eBid_Monthly_Sales_Dec_2016.csv for test purposes) " << endl;
 	cin >> csvPath;
 	cout << "Loading CSV file " << csvPath << endl;
 
@@ -312,8 +288,6 @@ void htLoadBids(HashTable* hashTable) {
             bid.fund = file[i][8];
             bid.amount = strToDouble(file[i][4], '$');
 
-            //cout << "Item: " << bid.title << ", Fund: " << bid.fund << ", Amount: " << bid.amount << endl;
-
             // push this bid to the end
             hashTable->Insert(bid);
         }
@@ -325,7 +299,8 @@ void htLoadBids(HashTable* hashTable) {
 
 
 /**
- * The one and only main() method
+ * Hash Table main method, actual main() method directs here when user selects to
+ * 			search by ID
  */
 int htMain() {
 

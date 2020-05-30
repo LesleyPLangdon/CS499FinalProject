@@ -1,8 +1,10 @@
 /*
- * Capstone.hpp
- *
- *  Created on: Apr 14, 2020
- *      Author: Lesle
+ * Name			:	Capestone.hpp
+ * Author		:	Lesley Potts-Langdon (method stubs and some base code was supplied,
+ * 						all method code and logic produced by author)
+ * Start Date	:	April 14, 2020
+ * Submitted	:	May 30, 2020 (phase one, all files accessable from CapstoneMain.cpp main() method)
+ * Description	:	Holds methods to be used by other classes in application.
  */
 
 #ifndef CAPSTONE_HPP_

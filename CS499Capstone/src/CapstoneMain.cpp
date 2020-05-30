@@ -1,8 +1,10 @@
 /*
- * CapstoneMain.cpp
- *
- *  Created on: Apr 11, 2020
- *      Author: Lesle
+ * Name			:	CapstoneMain.cpp
+ * Author		:	Lesley Potts-Langdon
+ * Start Date	:	April 14, 2020
+ * Submitted	:	May 30, 2020 (phase one, all files accessable from CapstoneMain.cpp main() method)
+ * Description	:	Main method to select which data structure to use for storing and
+ * 						handling data.
  */
 #include <algorithm>
 #include <iostream>
@@ -70,10 +72,6 @@ class CapstoneMain{
 		}
 
 
-
-	//bstMain();
-	//htMain();
-	//llMain();
 
 	return 0;
 
