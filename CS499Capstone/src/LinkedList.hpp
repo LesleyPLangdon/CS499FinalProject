@@ -6,6 +6,7 @@
  * Submitted	:	May 30, 2020 (phase one, all files accessible from CapstoneMain.cpp main() method)
  * Description	:	Class to create a Linked List with
  * 		methods for loading, adding, displaying, searching and removing.
+ * 		Will search by fund but can only remove by BidID
  */
 
 #ifndef LINKEDLIST_HPP_
@@ -58,15 +59,16 @@ public:
 	void Prepend(Bid bid);
 	void PrintList();
 	void Remove();
-	Bid Search();
+	void Search();
 	int Size();
+
 };
 
 /*
  * Default constructor
  */
 LinkedList::LinkedList() {
-	// FIXME (2): Initialize housekeeping variables
+	// Initialize housekeeping variables
 	head = nullptr;
 	tail = nullptr;
 }
@@ -174,23 +176,28 @@ void LinkedList::Remove() {
  *
  * @param bidId The bid id to search for
  */
-Bid LinkedList::Search() {
+void LinkedList::Search() {
 	// Implement search logic
-	string bidId;
-	cout << "Enter Bid ID for search: (use 98109 for test purposes) " << endl;
-	cin >> bidId;
+
+	LinkedList searchResults;
 	Node* current = head;
+	string srchFund;
+	cout << "Enter fund for search: (use general fund for test purposes) " << endl;
+	cin >> srchFund;
 
 	//loop through linked list and search for match
 	while (current != nullptr) {
 		//compare method will return 0 if values are equal
-		if (current->bid.bidId.compare(bidId) == 0) {
-			return current->bid;
+
+		if (current->bid.fund.compare(srchFund) == 0) {
+			searchResults.Append(current->bid);
+
 		}
 		current = current->next;
 	}
-	Bid bid;
-	return bid;
+
+
+	searchResults.PrintList();
 }
 
 /*
@@ -231,8 +238,6 @@ void llLoadBids(LinkedList *list) {
 			bid.fund = file[i][8];
 			bid.amount = strToDouble(file[i][4], '$');
 
-			cout << bid.bidId << ": " << bid.title << " | " << bid.fund << " | "
-					<< bid.amount << endl;
 
 			// add this bid to the end
 			list->Append(bid);
@@ -296,21 +301,12 @@ int llMain() {
 			break;
 
 		case 4:
-			ticks = clock();
 
-			bid = bidList.Search();
 
-			ticks = clock() - ticks; // current clock ticks minus starting clock ticks
 
-			if (!bid.bidId.empty()) {
-				displayBid(bid);
-			} else {
-				cout << "Bid Id " << bid.bidId << " not found." << endl;
-			}
+			bidList.Search();
 
-			cout << "time: " << ticks << " clock ticks" << endl;
-			cout << "time: " << ticks * 1.0 / CLOCKS_PER_SEC << " seconds"
-					<< endl;
+
 
 			break;
 
