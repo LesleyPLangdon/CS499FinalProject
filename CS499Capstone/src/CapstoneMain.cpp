@@ -2,7 +2,7 @@
  * Name			:	CapstoneMain.cpp
  * Author		:	Lesley Potts-Langdon
  * Start Date	:	April 14, 2020
- * Submitted	:	May 30, 2020 (phase one, all files accessable from CapstoneMain.cpp main() method)
+ * Submitted	:	May 30, 2020 (phase one, all files accessible from CapstoneMain.cpp main() method)
  * Description	:	Main method to select which data structure to use for storing and
  * 						handling data.
  */
@@ -17,20 +17,18 @@
 #include "Capstone.hpp"
 using namespace std;
 
-class CapstoneMain{
-
+class CapstoneMain {
 
 };
-	int main(){
-		char ans;
-		cout << "Would you like to enter a new bid? (Y or N) " << endl;
-		cin >> ans;
-		if(ans == ('Y'|'y')){
-			llMain();
-		}
-		else if(ans == ('N' | 'n')){
-			int choice = 0;
-			while (choice != 9) {
+int main() {
+	char ans;
+	cout << "Would you like to enter a new bid? (Y or N) " << endl;
+	cin >> ans;
+	if (ans == ('Y' | 'y')) {
+		llMain();
+	} else if (ans == ('N' | 'n')) {
+		int choice = 0;
+		while (choice != 9) {
 			cout << "Which field would you like to search by: " << endl;
 			cout << "1. Id: " << endl;
 			cout << "2. Title: " << endl;
@@ -42,39 +40,30 @@ class CapstoneMain{
 
 			switch (choice) {
 
-			       case 1:
-			    	   htMain();
+			case 1:
+				htMain();
+				break;
 
-			    	   break;
-			       case 2:
-			    	   vMain();
+			case 2:
+				vMain();
+				break;
 
+			case 3:
+				llMain();
+				break;
 
-			    	   break;
-			       case 3:
-			    	   llMain();
-
-
-
-			    	   break;
-			       case 4:
-			    	   bstMain();
-
-					   break;
-
+			case 4:
+				bstMain();
+				break;
 
 			}
-			}
-			cout << "Good bye." << endl;
 		}
-		else{
-			cout << "That is not a valid entry, please try again: " << endl;
-		}
-
-
+		cout << "Good bye." << endl;
+	} else {
+		cout << "That is not a valid entry, please try again: " << endl;
+	}
 
 	return 0;
 
 }
-
 
