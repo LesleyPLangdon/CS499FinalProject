@@ -132,19 +132,19 @@ void BinarySearchTree::Remove() {
  */
 Bid BinarySearchTree::Search() {
 	// Implement searching the tree for a bid
-	string bidId;
-	cout << "Enter Bid ID for search:" << endl;
-	cin >> bidId;
+	double bidAmount;
+	cout << "Enter Bid Amount for search:" << endl;
+	cin >> bidAmount;
 	BstNode* current = root;
 
 	// keep looping downwards until bottom reached or matching bidId found
 	while (current != nullptr) {
 		// if match found, return it
-		if (current->bid.bidId.compare(bidId) == 0) {
+		if (current->bid.amount == (bidAmount)) {
 			return current->bid;
 		}
 		// if bid is smaller than current node then traverse left
-		if (bidId.compare(current->bid.bidId) < 0) {
+		if (bidAmount > (current->bid.amount)) {
 			current = current->left;
 			// else larger so traverse right
 		} else {
@@ -166,7 +166,7 @@ void BinarySearchTree::addNode(BstNode* node, Bid bid) {
 	// Implement inserting a bid into the tree
 
 	// if node is larger then add to left
-	if (node->bid.bidId.compare(bid.bidId) > 0) {
+	if (node->bid.amount < (bid.amount)) {
 		// if no left node
 		if (node->left == nullptr) {
 			// this node becomes left
@@ -360,7 +360,7 @@ int bstMain() {
 			if (!bid.bidId.empty()) {
 				displayBid(bid);
 			} else {
-				cout << "Bid Id " << bid.bidId << " not found." << endl;
+				cout << "Bid Amount " << bid.amount << " not found." << endl;
 			}
 
 			cout << "time: " << ticks << " clock ticks" << endl;

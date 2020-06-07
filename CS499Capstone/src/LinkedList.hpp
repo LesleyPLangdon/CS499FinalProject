@@ -130,46 +130,7 @@ void LinkedList::PrintList() {
 	}
 }
 
-/*
- * Remove a specified bid
- *
- * @param bidId The bid id to remove from the list
- */
-void LinkedList::Remove() {
-	// Implement remove logic
-	string bidId;
-	cout << "Which bid would you like to remove? (use 98109 for test purposes)"
-			<< endl;
-	cin >> bidId;
-	if (head != nullptr) {
-		//special case if head is the node to be removed
-		if (head->bid.bidId.compare(bidId) == 0) { //compares id values, if they match it returns 0
-			Node* tempNode = head->next; //assign node after one to be removed to a temp node
-			delete head;
-			head = tempNode;   //assign node following one removed to head
-			size--;   //decrement size
-		} else {
-			Node* current = head;   //node pointer current points to head
-			//loop through linked list and search for match
-			while (current->next != nullptr) {
-				//compare method will return 0 if values are equal
-				if (current->next->bid.bidId.compare(bidId) == 0) {
-					//points to node to be removed
-					Node* tempNode = current->next;
 
-					//make current node the one after the one to be removed
-					current->next = tempNode->next;
-
-					//delete selected node
-					delete tempNode;
-					size--;			//decrement size
-					return;
-				}
-				current = current->next;
-			}
-		}
-	}
-}
 
 /*
  * Search for the specified bidId
@@ -183,7 +144,8 @@ void LinkedList::Search() {
 	Node* current = head;
 	string srchFund;
 	cout << "Enter fund for search: (use general fund for test purposes) " << endl;
-	cin >> srchFund;
+	cin.ignore();
+	getline(cin, srchFund);
 
 	//loop through linked list and search for match
 	while (current != nullptr) {
@@ -268,7 +230,6 @@ int llMain() {
 		cout << "  2. Load Bids" << endl;
 		cout << "  3. Display All Bids" << endl;
 		cout << "  4. Find Bid" << endl;
-		cout << "  5. Remove Bid" << endl;
 		cout << "  9. Exit" << endl;
 		cout << "Enter choice: ";
 		cin >> choice;
@@ -310,10 +271,7 @@ int llMain() {
 
 			break;
 
-		case 5:
-			bidList.Remove();
 
-			break;
 		}
 	}
 

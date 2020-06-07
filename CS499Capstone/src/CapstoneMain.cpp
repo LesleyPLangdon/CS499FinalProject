@@ -24,6 +24,7 @@ int main() {
 	char ans;
 	cout << "Would you like to enter a new bid? (Y or N) " << endl;
 	cin >> ans;
+	//ans = 'n';
 	if (ans == ('Y' | 'y')) {
 		llMain();
 	} else if (ans == ('N' | 'n')) {
