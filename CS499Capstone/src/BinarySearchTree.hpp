@@ -4,8 +4,9 @@
  * 						all method code and logic produced by author)
  * Start Date	:	April 14, 2020
  * Submitted	:	May 30, 2020 (phase one, all files accessible from CapstoneMain.cpp main() method)
+ * 					June 7, 2020 (phase two, use BST to search for a bid by the bid amount
  * Description	:	Class to create a Binary Search Tree with
- * 		methods for loading, displaying, searching and removing.
+ * 		methods for loading, displaying, searching.
  */
 
 #ifndef BINARYSEARCHTREE_HPP_
@@ -53,7 +54,7 @@ private:
 	void inOrder(BstNode* node);
 	void postOrder(BstNode* node);
 	void preOrder(BstNode* node);
-	BstNode* removeNode(BstNode* node, string bidId);
+
 
 public:
 	BinarySearchTree();
@@ -62,8 +63,7 @@ public:
 	void Insert(Bid bid);
 	void PostOrder();
 	void PreOrder();
-	void Remove();
-	Bid Search();
+	void Search();
 
 };
 
@@ -115,33 +115,26 @@ void BinarySearchTree::Insert(Bid bid) {
 	}
 }
 
-/**
- * Remove a bid
- */
-void BinarySearchTree::Remove() {
-	// Implement removing a bid from the tree
-	string bidId;
-	cout << "Which bid would you like to remove? (use 98109 for test purposes)"
-			<< endl;
-	cin >> bidId;
-	this->removeNode(root, bidId);
-}
+
 
 /**
  * Search for a bid
  */
-Bid BinarySearchTree::Search() {
+void BinarySearchTree::Search() {
 	// Implement searching the tree for a bid
 	double bidAmount;
 	cout << "Enter Bid Amount for search:" << endl;
 	cin >> bidAmount;
 	BstNode* current = root;
-
+	int results = 0;
 	// keep looping downwards until bottom reached or matching bidId found
 	while (current != nullptr) {
 		// if match found, return it
 		if (current->bid.amount == (bidAmount)) {
-			return current->bid;
+			cout << current->bid.bidId << ": " << current->bid.title << " | " << current->bid.amount << " | "
+						<< current->bid.fund << endl;
+			results ++;
+			//return current->bid;
 		}
 		// if bid is smaller than current node then traverse left
 		if (bidAmount > (current->bid.amount)) {
@@ -151,9 +144,13 @@ Bid BinarySearchTree::Search() {
 			current = current->right;
 		}
 	}
+	if (results ==0) {
+		cout << "Bid Amount " << bidAmount << " not found." << endl;
+	}
 
-	Bid bid;
-	return bid;
+//	Bid bid;
+//	return bid;
+	return;
 }
 
 /**
@@ -214,47 +211,7 @@ void BinarySearchTree::preOrder(BstNode* node) {
 	}
 }
 
-/**
- * Remove a bid from some node (recursive)
- */
-BstNode* BinarySearchTree::removeNode(BstNode* node, string bidId) {
-	// Implement removing a bid from the tree
-	if (node == nullptr) {
-		return node;
-		// recurse down the left subtree
-	} else if (bidId.compare(node->bid.bidId) < 0) {
-		node->left = removeNode(node->left, bidId);
-		// recurse down the right subtree
-	} else if (bidId.compare(node->bid.bidId) > 0) {
-		node->right = removeNode(node->right, bidId);
-	} else {
-		// no children so node is a leaf node
-		if (node->left == nullptr && node->right == nullptr) {
-			delete node;
-			node = nullptr;
-			// one child to the left
-		} else if (node->left != nullptr && node->right == nullptr) {
-			BstNode* temp = node;
-			node = node->left;
-			delete temp;
-			// one child to the right
-		} else if (node->left == nullptr && node->right != nullptr) {
-			BstNode* temp = node;
-			node = node->right;
-			delete temp;
-			// two children
-		} else {
-			// find the minimum
-			BstNode* temp = node->right;
-			while (temp->left != nullptr) {
-				temp = temp->left;
-			}
-			node->bid = temp->bid;
-			node->right = removeNode(node->right, temp->bid.bidId);
-		}
-	}
-	return node;
-}
+
 
 //============================================================================
 // Static methods used for testing
@@ -323,7 +280,6 @@ int bstMain() {
 		cout << "  1. Load Bids" << endl;
 		cout << "  2. Display All Bids" << endl;
 		cout << "  3. Find Bid" << endl;
-		cout << "  4. Remove Bid" << endl;
 		cout << "  9. Exit" << endl;
 		cout << "Enter choice: ";
 		cin >> choice;
@@ -351,27 +307,10 @@ int bstMain() {
 			break;
 
 		case 3:
-			ticks = clock();
-
-			bid = bst->Search();
-
-			ticks = clock() - ticks; // current clock ticks minus starting clock ticks
-
-			if (!bid.bidId.empty()) {
-				displayBid(bid);
-			} else {
-				cout << "Bid Amount " << bid.amount << " not found." << endl;
-			}
-
-			cout << "time: " << ticks << " clock ticks" << endl;
-			cout << "time: " << ticks * 1.0 / CLOCKS_PER_SEC << " seconds"
-					<< endl;
-
+			bst->Search();
 			break;
 
-		case 4:
-			bst->Remove();
-			break;
+
 		}
 	}
 

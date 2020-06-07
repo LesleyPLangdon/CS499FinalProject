@@ -3,7 +3,8 @@
  * Author		:	Lesley Potts-Langdon (constructors, method stubs and some base code were supplied,
  * 						all method code and logic produced by author)
  * Start Date	:	April 14, 2020
- * Submitted	:	May 30, 2020 (Milestone three - no changes needed)
+ * Submitted	:	May 30, 2020 (Milestone two - no changes needed)
+ * 					June 7, 2020 (Milestone three - no changes needed
  * Description	:	Class to create a Hash Table with
  * 		methods for loading, displaying, searching and removing.
  */

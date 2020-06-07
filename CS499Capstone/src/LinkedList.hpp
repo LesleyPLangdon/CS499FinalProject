@@ -4,9 +4,10 @@
  * 						all method code and logic produced by author)
  * Start Date	:	April 14, 2020
  * Submitted	:	May 30, 2020 (phase one, all files accessible from CapstoneMain.cpp main() method)
+ * 					June 7, 2020 (phase two, use Linked List to search for a bid by the bid fund
  * Description	:	Class to create a Linked List with
- * 		methods for loading, adding, displaying, searching and removing.
- * 		Will search by fund but can only remove by BidID
+ * 		methods for loading, adding, displaying, and searching.
+ *
  */
 
 #ifndef LINKEDLIST_HPP_
@@ -58,7 +59,6 @@ public:
 	void Append(Bid bid);
 	void Prepend(Bid bid);
 	void PrintList();
-	void Remove();
 	void Search();
 	int Size();
 

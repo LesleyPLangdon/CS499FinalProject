@@ -4,8 +4,9 @@
  * 						all method code and logic produced by author)
  * Start Date	:	April 14, 2020
  * Submitted	:	May 30, 2020 (phase one, all files accessible from CapstoneMain.cpp main() method)
+ * 					June 7, 2020 (phase two, use Vector to search for a bid by the bid title
  * Description	:	Class to create a Binary Search Tree with
- * 		methods for loading, displaying, searching and removing.
+ * 		methods for loading, displaying and searching.
  */
 
 #ifndef VECTOR_HPP_
