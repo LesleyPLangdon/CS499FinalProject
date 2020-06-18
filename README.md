@@ -1,37 +1,14 @@
-## Welcome to GitHub Pages
+## CS499 Capstone Project
 
-You can use the [editor on GitHub](https://github.com/LesleyPLangdon/CS499FinalProject/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+I have worked with a single project to show various skills.  The project started as four separate data structure applications coded in C++.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+First, I conducted a code review to establish what the process would entail.  I looked not just at the modifications I would make to the code itself but also at things like formatting and comments.  
 
-### Markdown
+Second, I combined the four separate applications into one.  The main objective here was to identify reusable code that could be shared between the applications.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Third, I modified the different data structures to accommodate searching by different fields.  This was an exercise to highlight how different searches work and the benefits and limitations of each.  It is meant to be an educational solution, not a practical one.
 
-```markdown
-Syntax highlighted code block
+Finally, I took the csv file data set that was used in this application and fed it into a MySQL database.  I then used queries to execute the same searches that were featured in the prior application.
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
 
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/LesleyPLangdon/CS499FinalProject/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
